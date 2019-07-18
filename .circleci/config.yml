@@ -48,10 +48,7 @@ jobs:
                 key: npm-v2-{{ checksum "package.json" }}
                 paths:
                 - "~/workspace/node_modules/"
-
-          - run:
-                name: Generate static files
-                command: npm run generate
+                
 
           - run:
                 name: Create AWS credential file
