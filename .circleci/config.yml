@@ -66,6 +66,9 @@ jobs:
                 name: check s3 
                 command: aws s3 ls s3://test.42tokyo.jp/
 
+          - run:
+                name: Deploy s3 bucket 
+                command: aws s3 sync ./out s3://test.42tokyo.jp/ --delete
 
 workflows:
     version: 2
