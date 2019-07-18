@@ -41,7 +41,10 @@ jobs:
 
           - run:
                 name: Install npm dependency
-                command: npm install
+                command: |
+                    npm install
+                    ls ~/workspace/
+
 
           - save_cache:
                 name: Save npm dependency cache
