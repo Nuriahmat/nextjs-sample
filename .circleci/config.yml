@@ -69,7 +69,6 @@ workflows:
     working:
         jobs:
           - build-prd:
-                context: dist-prd
                 filters:
                     branches:
                         only: master
