@@ -6,7 +6,7 @@ const IndexPages = () => {
     <h1 className={css.test}>
       Welcome to
       <b> Next.js </b>
-      for TypeScript && Pstcss!
+      for TypeScript && Postcss!
     </h1>
   );
 };

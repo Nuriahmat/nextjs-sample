@@ -40,14 +40,11 @@ jobs:
                     nodebrew use v8.11.4
 
           - run:
-                name: Install npm dependency
+                name: Install npm dependency && Build && Export
                 command: |
                     npm install
                     npm run build
                     npm run export
-                    pwd 
-                    ls -la
-
 
           - save_cache:
                 name: Save npm dependency cache
@@ -62,9 +59,6 @@ jobs:
                     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
                     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
 
-          - run:
-                name: check s3 
-                command: aws s3 ls s3://test.42tokyo.jp/
 
           - run:
                 name: Deploy s3 bucket 
