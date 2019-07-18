@@ -43,7 +43,8 @@ jobs:
                 name: Install npm dependency
                 command: |
                     npm install
-                    ls ~/workspace/
+                    pwd 
+                    ls -la
 
 
           - save_cache:
