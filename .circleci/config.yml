@@ -1,0 +1,77 @@
+version: 2
+jobs:
+    build-prd:
+        docker:
+          - image: python:3.7
+        steps:
+          - checkout
+          - restore_cache:
+                name: Restore pip dependency cache
+                key: pip-v3-{{ checksum "requirements.txt" }}
+
+          - run:
+                name: Install pip dependency
+                command: |
+                    echo "export PATH=~/.local/bin:$PATH" >> $BASH_ENV
+                    source ~/.bashrc
+                    pip install -r requirements.txt --user --upgrade --no-warn-script-location
+
+          - save_cache:
+                name: Seve pip dependency cache
+                key: pip-v3-{{ checksum "requirements.txt" }}
+                paths:
+                - "~/.local"
+
+          - run:
+                name: Install nodebrew and set PATH
+                command: |
+                    curl -L git.io/nodebrew | perl - setup
+                    echo "export PATH=$HOME/.nodebrew/current/bin:$PATH" >> $BASH_ENV
+                    source ~/.bashrc
+
+          - restore_cache:
+                name: Restore npm dependency cache
+                key: npm-v2-{{ checksum "package.json" }}
+
+          - run:
+                name: Install Node.js specific version
+                command: |
+                    nodebrew install-binary v8.11.4
+                    nodebrew use v8.11.4
+
+          - run:
+                name: Install npm dependency
+                command: npm install
+
+          - save_cache:
+                name: Save npm dependency cache
+                key: npm-v2-{{ checksum "package.json" }}
+                paths:
+                - "~/workspace/node_modules/"
+
+          - run:
+                name: Generate static files
+                command: npm run generate
+
+          - run:
+                name: Create AWS credential file
+                command: |
+                    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+                    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+          - run:
+                name: check s3 
+                command: aws s3 ls s3://test.42tokyo.jp/
+
+
+workflows:
+    version: 2
+    working:
+        jobs:
+          - build-prd:
+                context: dist-prd
+                filters:
+                    branches:
+                        only: master
+
+
