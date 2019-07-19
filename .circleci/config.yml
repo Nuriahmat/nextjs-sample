@@ -36,8 +36,8 @@ jobs:
           - run:
                 name: Install Node.js specific version
                 command: |
-                    nodebrew install-binary v8.11.4
-                    nodebrew use v8.11.4
+                    nodebrew install-binary v10.16.0
+                    nodebrew use v10.16.0
 
           - run:
                 name: Install npm dependency && Build && Export
