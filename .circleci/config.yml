@@ -11,7 +11,7 @@ jobs:
 
           - run:
                 name: check
-                command: yum -y install rsync
+                command: apt-get -y install rsync
           - run:
                 name: check
                 command: rsync --version                
