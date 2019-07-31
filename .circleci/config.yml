@@ -4,6 +4,9 @@ jobs:
         docker:
           - image: node:11.13
         steps:
+          - add_ssh_keys:
+              fingerprints:
+                - "13:ae:99:56:4c:4c:a1:31:32:42:fd:42:83:70:88:88"
           - checkout
           - restore_cache:
                 name: Restore pip dependency cache
