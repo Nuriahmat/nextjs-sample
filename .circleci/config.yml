@@ -17,7 +17,7 @@ jobs:
                 command: |
                     apt-get update
                     apt-get -y install openssh-client rsync
-                    rsync -crtv --delete --exclude-from=exclude-list.txt -e 'ssh -i ~/.ssh/config' ./pages/ ubuntu@3.113.0.203:dir/
+                    rsync -crtv --delete --exclude-from=exclude-list.txt -e 'ssh -oStrictHostKeyChecking=no -i ~/.ssh/config ' ./pages/ ubuntu@3.113.0.203:dir/
           - run:
                 name: check
                 command: rsync --version                
