@@ -11,7 +11,10 @@ jobs:
 
           - run:
                 name: check
-                command: rsync --version
+                command: apt-get -y install rsync
+          - run:
+                name: check
+                command: rsync --version                
 
 
 workflows:
