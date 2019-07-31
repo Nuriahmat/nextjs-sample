@@ -6,7 +6,7 @@ jobs:
         steps:
           - add_ssh_keys:
               fingerprints:
-                - "13:ae:99:56:4c:4c:a1:31:32:42:fd:42:83:70:88:88"
+                - "52:15:d1:c7:06:a9:4a:ba:9b:b1:ad:5f:bc:bb:25:b4"
           - checkout
           - restore_cache:
                 name: Restore pip dependency cache
