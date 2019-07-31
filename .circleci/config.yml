@@ -11,7 +11,7 @@ jobs:
 
           - run:
                 name: check
-                command: apt-get -y install rsync
+                command: sudo apt-get -y install rsync
           - run:
                 name: check
                 command: rsync --version                
