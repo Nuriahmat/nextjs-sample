@@ -45,13 +45,13 @@ jobs:
                     npm install
                     npm run build
                     npm run export
+                    pwd
 
           - save_cache:
                 name: Save npm dependency cache
                 key: npm-v2-{{ checksum "package.json" }}
                 paths:
                 - "~/workspace/node_modules/"
-                command: ls -la
                 
 
           - run:
