@@ -51,6 +51,7 @@ jobs:
                 key: npm-v2-{{ checksum "package.json" }}
                 paths:
                 - "~/workspace/node_modules/"
+                command: ls -la
                 
 
           - run:
