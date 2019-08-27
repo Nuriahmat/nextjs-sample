@@ -15,7 +15,7 @@ jobs:
                     echo "export PATH=~/.local/bin:$PATH" >> $BASH_ENV
                     source ~/.bashrc
                     pip install -r requirements.txt --user --upgrade --no-warn-script-location
-                    pip --version
+                    pip show pip
 
           - save_cache:
                 name: Seve pip dependency cache
