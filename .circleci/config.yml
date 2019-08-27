@@ -46,7 +46,7 @@ jobs:
                     npm install
                     npm run build
                     npm run export
-                    npm list
+                    npm -v
 
           - save_cache:
                 name: Save npm dependency cache
